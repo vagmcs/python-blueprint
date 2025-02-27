@@ -22,10 +22,11 @@ clean:
 format:
 	@poetry run isort $(PROJECT_NAME) tests
 	@poetry run black $(PROJECT_NAME) tests
+	@poetry run docformatter $(PROJECT_NAME) tests || true
 
 ### compile        : Apply code styling and perform type checks
-.PHONY: compile
-compile: format
+.PHONY: lint
+lint: format
 	@poetry check
 	@poetry run ruff check --diff --no-fix $(PROJECT_NAME) tests
 	@poetry run ruff format --check --diff $(PROJECT_NAME) tests

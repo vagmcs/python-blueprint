@@ -3,31 +3,12 @@ name = "project"
 version = "0.0.1"
 description = "A python blueprint to configure projects."
 authors = [ "Evangelos Michelioudakis <vagmcs@gmail.com>" ]
-license = "MIT"
+license = ""
 readme = "README.md"
 keywords = [ ]
 repository = "https://github.com/vagmcs/python-blueprint"
 documentation = "https://github.com/vagmcs/python-blueprint"
-classifiers = [
-"Intended Audience :: Developers",
-"Intended Audience :: Information Technology",
-"Intended Audience :: System Administrators",
-"Operating System :: OS Independent",
-"Topic :: Software Development",
-"Topic :: Software Development :: Libraries",
-"Topic :: Software Development :: Libraries :: Python Modules",
-"Topic :: Software Development :: Libraries :: Application Frameworks",
-"Topic :: Software Development :: Version Control :: Git",
-"Topic :: System :: Archiving :: Packaging",
-"Topic :: System :: Installation/Setup",
-"Topic :: System :: Software Distribution",
-"Programming Language :: Python",
-"Programming Language :: Python :: 3",
-"Programming Language :: Python :: 3.10",
-"Programming Language :: Python :: 3.11",
-"Programming Language :: Python :: 3.12",
-"License :: OSI Approved :: MIT License"
-]
+classifiers = [ ]
 
 
 [[tool.poetry.packages]]
@@ -80,6 +61,14 @@ implicit_reexport = true
 line_length = 120
 target_version = [ "py310", "py311" ]
 color = true
+
+
+[tool.docformatter]
+black = true
+in-place = true
+recursive = true
+pre-summary-newline = true
+make-summary-multi-line = true
 
 
 [tool.isort]
