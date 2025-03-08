@@ -41,3 +41,8 @@ test:
 .PHONY: build
 build: compile test
 	@poetry build
+
+### docker         : Build docker image
+.PHONY: docker
+docker:
+	@poetry docker
