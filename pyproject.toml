@@ -28,6 +28,7 @@ pytest = "^8.3.5"
 pytest-cov = "^6.0.0"
 mkdocs = "^1.6.1"
 pre-commit = "^4.1.0"
+commitizen = "^4.4.1"
 
 
 [tool.poetry.group.dev.dependencies.black]
@@ -130,6 +131,15 @@ exclude = [
 "site-packages",
 "venv"
 ]
+
+
+[tool.commitizen]
+version = "0.0.1"
+version_scheme = "pep440"
+version_files = [ "pyproject.toml:^version" ]
+update_changelog_on_bump = true
+tag_format = "v$version"
+changelog_file = "docs/release-notes.md"
 
 
 [build-system]
