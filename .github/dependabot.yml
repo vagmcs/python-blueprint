@@ -6,11 +6,11 @@ updates:
     schedule:
       interval: "monthly"
     commit-message:
-      prefix: ⬆
+      prefix: "⬆️ "
   # Python
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "monthly"
     commit-message:
-      prefix: ⬆
+      prefix: "⬆️ "
