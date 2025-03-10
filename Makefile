@@ -46,3 +46,8 @@ build: compile test
 .PHONY: docker
 docker:
 	@poetry docker
+
+### changelog      : Generate changelog
+.PHONY: changelog
+changelog:
+	@cz changelog --unreleased-version "Latest Release"
