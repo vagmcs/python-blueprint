@@ -1,0 +1,8 @@
+site_name: Project
+site_description: Description
+
+nav:
+    - Home: index.md
+    - Release Notes: release_notes.md
+
+theme: mkdocs

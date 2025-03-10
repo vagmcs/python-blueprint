@@ -139,8 +139,8 @@ name = "cz_gitmoji"
 version_scheme = "pep440"
 version_provider = "poetry"
 update_changelog_on_bump = true
-template = "docs/release_notes.j2"
-changelog_file = "docs/release_notes.md"
+template = "docs/templates/release_notes.j2"
+changelog_file = "docs/docs/release_notes.md"
 
 
 [build-system]

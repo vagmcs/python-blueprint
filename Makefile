@@ -39,8 +39,9 @@ test:
 
 ### build          : Compile, run tests and package
 .PHONY: build
-build: compile test
+build: lint test
 	@poetry build
+	@poetry run mkdocs build -f docs/mkdocs.yml
 
 ### docker         : Build docker image
 .PHONY: docker
