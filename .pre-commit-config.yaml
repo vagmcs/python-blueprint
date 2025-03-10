@@ -16,6 +16,16 @@ repos:
       - id: trailing-whitespace
       - id: name-tests-test
 
+  - repo: https://github.com/psf/black
+    rev: 25.1.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycqa/isort
+    rev: 6.0.1
+    hooks:
+      - id: isort
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.9.10
     hooks:
@@ -27,6 +37,16 @@ repos:
     rev: v1.15.0
     hooks:
       - id: mypy
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.0
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/ljnsn/cz-conventional-gitmoji
+    rev: v0.6.1
+    hooks:
+      - id: conventional-gitmoji
 
 ci:
   autofix_commit_msg: 🎨 [pre-commit.ci] auto fixes from pre-commit.com hooks
