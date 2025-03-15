@@ -23,6 +23,7 @@ format:
 	@poetry run isort $(PROJECT_NAME) tests
 	@poetry run black $(PROJECT_NAME) tests
 	@poetry run docformatter $(PROJECT_NAME) tests || true
+	@poetry run sqlfluff fix sql
 
 ### compile        : Apply code styling and perform type checks
 .PHONY: lint

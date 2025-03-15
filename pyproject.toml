@@ -17,15 +17,19 @@ include = "project"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
+returns = "^0.24.0"
 
 
 [tool.poetry.group.dev.dependencies]
 docformatter = "^1.7.5"
 isort = "^6.0.1"
 ruff = "^0.9.10"
+sqlfluff = "^3.3.1"
 mypy = "^1.15.0"
 pytest = "^8.3.5"
 pytest-cov = "^6.0.0"
+pytest-mock = "^3.14.0"
+hypothesis = "^6.128.2"
 mkdocs = "^1.6.1"
 pre-commit = "^4.1.0"
 commitizen = "^4.4.1"
@@ -141,6 +145,15 @@ version_provider = "poetry"
 update_changelog_on_bump = true
 template = "docs/templates/release_notes.j2"
 changelog_file = "docs/docs/release_notes.md"
+
+
+[tool.sqlfluff.core]
+dialect = "ansi"
+max_line_length = 120
+
+
+[tool.sqlfluff.rules.capitalisation.keywords]
+capitalisation_policy = "upper"
 
 
 [build-system]
