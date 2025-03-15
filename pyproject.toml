@@ -17,7 +17,7 @@ include = "project"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-returns = "0.23.0"
+returns = "^0.24.0"
 
 
 [tool.poetry.group.dev.dependencies]
