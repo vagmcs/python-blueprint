@@ -2,9 +2,8 @@
 
 Please provide a clear and concise description of the changes introduced by this pull request.
 
-**What does this PR do?**
-
-A detailed description of the changes, including why they are necessary.
+- What does this PR do?
+- Why are these changes are necessary?
 
 **Related Issue(s):**
 
@@ -18,8 +17,7 @@ Before submitting this PR, please ensure you have completed the following:
 - [ ] I have performed a self-review of my code.
 - [ ] I have added or updated unit tests to cover my changes.
 - [ ] I have added or updated integration tests to cover my changes.
-- [ ] I have documented any relevant changes in the appropriate documentation.
-- [ ] I have followed the project's coding style guidelines.
+- [ ] I have documented any relevant changes in the documentation.
 
 ## Risk Level
 
@@ -29,6 +27,6 @@ Please select the risk level associated with this change:
 - [ ] **Medium**: Moderate impact, potential for minor issues.
 - [ ] **High**: Significant impact, potential for major issues.
 
-## Additional Notes
+## Notes
 
 Add any additional information or context that reviewers should be aware of.
