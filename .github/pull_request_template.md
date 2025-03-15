@@ -15,8 +15,7 @@ Before submitting this PR, please ensure you have completed the following:
 
 - [ ] I have updated the name of PR to correct format `[issue-number] A brief description`.
 - [ ] I have performed a self-review of my code.
-- [ ] I have added or updated unit tests to cover my changes.
-- [ ] I have added or updated integration tests to cover my changes.
+- [ ] I have added or updated unit/integration tests to cover my changes.
 - [ ] I have documented any relevant changes in the documentation.
 
 ## Risk Level
