@@ -4,6 +4,7 @@ SHELL:=/usr/bin/env bash -euo pipefail -c
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME:=$(shell poetry version | sed -e 's/[ ].*//g')
 PROJECT_VERSION:=$(shell poetry version | sed -e 's/.*[ ]//g')
+RELEASE_NOTES:=$(shell cat pyproject.toml | grep changelog_file | sed -e 's/.*=[ ]//g')
 
 .PHONY: help
 help:
@@ -16,6 +17,7 @@ help:
 .PHONY: clean
 clean:
 	@if [ -d "dist" ]; then rm -Rf $(CURRENT_DIR)/dist; fi
+	@if [ -d "docs/site" ]; then rm -Rf $(CURRENT_DIR)/docs/site; fi
 
 ### format         : Format source
 .PHONY: format
@@ -27,7 +29,7 @@ format:
 
 ### compile        : Apply code styling and perform type checks
 .PHONY: lint
-lint: format
+lint:
 	@poetry check
 	@poetry run ruff check --diff --no-fix $(PROJECT_NAME) tests
 	@poetry run ruff format --check --diff $(PROJECT_NAME) tests
@@ -38,9 +40,9 @@ lint: format
 test:
 	@poetry run pytest
 
-### build          : Compile, run tests and package
+### build          : Run tests, build docs and package
 .PHONY: build
-build: lint test
+build: test
 	@poetry build
 	@poetry run mkdocs build -f docs/mkdocs.yml
 
@@ -49,7 +51,23 @@ build: lint test
 docker:
 	@poetry docker
 
-### changelog      : Generate changelog
-.PHONY: changelog
-changelog:
-	@cz changelog --unreleased-version "Latest Release"
+### bump           : Bump version and generate changelog
+.PHONY: bump
+bump:
+	@perl -i -pe 's/Latest Release/${PROJECT_VERSION}/g' $(RELEASE_NOTES)
+	@cz changelog --incremental --start-rev $(PROJECT_VERSION) --unreleased-version "Latest Release"
+	$(eval BUMP=$(shell poetry version minor | sed -e 's/.*[ ]to[ ]//g'))
+	@git add --all && git commit -m "bump: version ${PROJECT_VERSION} to ${BUMP}"
+	@git tag ${BUMP}
+
+### publish        : Publish the package and documentation
+.PHONY: publish
+publish: build
+	@echo "Releasing version '$(PROJECT_VERSION)'"
+	@poetry publish
+	@poetry run mkdocs gh-deploy
+	@cz changelog $(PROJECT_VERSION)
+	@gh release create --verify-tag $(PROJECT_VERSION) \
+		--notes-file $(RELEASE_NOTES) \
+		dist/$(PROJECT_NAME)-$(PROJECT_VERSION).tar.gz \
+		dist/$(PROJECT_NAME)-$(PROJECT_VERSION)-py3-none-any.whl
