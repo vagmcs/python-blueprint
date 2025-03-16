@@ -20,3 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v5
+  check:
+    if: always()
+    needs:
+    - assign-author
+    - labeler
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}
