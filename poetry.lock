@@ -517,14 +517,14 @@ dev = ["flake8", "markdown", "twine", "wheel"]
 
 [[package]]
 name = "hypothesis"
-version = "6.128.2"
+version = "6.130.6"
 description = "A library for property-based testing"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "hypothesis-6.128.2-py3-none-any.whl", hash = "sha256:a4815dfb8bccfe26ccffa26e4c50d2f07adb45b1b4c66f4dd23ffbfb8cbf8ed3"},
-    {file = "hypothesis-6.128.2.tar.gz", hash = "sha256:a6e0e61bdb9ee6d1459687e4169e76a7bce830bb88f7e9948c2c1c4c39dd74b3"},
+    {file = "hypothesis-6.130.6-py3-none-any.whl", hash = "sha256:fe457a716797dbcc9c3dd77fe4164d65f77296010ce5b931910276242a90ed0e"},
+    {file = "hypothesis-6.130.6.tar.gz", hash = "sha256:994abd048924e365dbb8c21e3ea44c2ac576e02fa3d34b04288281768ae83b53"},
 ]
 
 [package.dependencies]
@@ -533,10 +533,10 @@ exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.82)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.20)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.19.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.1) ; sys_platform == \"win32\" or sys_platform == \"emscripten\"", "watchdog (>=4.0.0)"]
+all = ["black (>=19.10b0)", "click (>=7.0)", "crosshair-tool (>=0.0.84)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.20)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.19.3)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.1) ; sys_platform == \"win32\" or sys_platform == \"emscripten\"", "watchdog (>=4.0.0)"]
 cli = ["black (>=19.10b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
-crosshair = ["crosshair-tool (>=0.0.82)", "hypothesis-crosshair (>=0.0.20)"]
+crosshair = ["crosshair-tool (>=0.0.84)", "hypothesis-crosshair (>=0.0.20)"]
 dateutil = ["python-dateutil (>=1.4)"]
 django = ["django (>=4.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
@@ -1733,4 +1733,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "d1464404b02a4c2a90b71de8142dfa740502b96acc8db2ec1558f41c299a5038"
+content-hash = "f4ec1a4401f2205b54f36fb55ee97ae6d0b0cbca10269b2135ec7e91a46e8e45"
