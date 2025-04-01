@@ -32,7 +32,7 @@ pytest-sugar = "^1.0.0"
 pytest-mock = "^3.14.0"
 hypothesis = "^6.128.2"
 mkdocs = "^1.6.1"
-pre-commit = "^4.1.0"
+pre-commit = "^4.2.0"
 commitizen = "^4.4.1"
 cz-conventional-gitmoji = "^0.6.1"
 
