@@ -1370,22 +1370,22 @@ files = [
 
 [[package]]
 name = "returns"
-version = "0.24.0"
+version = "0.25.0"
 description = "Make your functions return something meaningful, typed, and safe!"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "returns-0.24.0-py3-none-any.whl", hash = "sha256:de82455a76b9fcd86810a49099fa7645eb20920105bc78b942b2f4923c829624"},
-    {file = "returns-0.24.0.tar.gz", hash = "sha256:735091cc798cac3f7cf8566b171922119f7796f2e49d6f65939f3e5a9c7c97f7"},
+    {file = "returns-0.25.0-py3-none-any.whl", hash = "sha256:bdc6ec52d28e74d6965f6de5a3af5e39427e67266014b605865fe2e194a75ed0"},
+    {file = "returns-0.25.0.tar.gz", hash = "sha256:1bf547311c0ade25435ce3bbe81642c325ea6b86beaf5d624cd410f0dee3ff50"},
 ]
 
 [package.dependencies]
 typing-extensions = ">=4.0,<5.0"
 
 [package.extras]
-check-laws = ["hypothesis (>=6.98,<7.0)", "pytest (>=8.0,<9.0)"]
-compatible-mypy = ["mypy (>=1.12,<1.14)"]
+check-laws = ["hypothesis (>=6.122,<7.0)", "pytest (>=8.0,<9.0)"]
+compatible-mypy = ["mypy (>=1.12,<1.16)"]
 
 [[package]]
 name = "ruff"
@@ -1733,4 +1733,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "edb18dff973faaedebce2bf63d6c0a6d7b28b92142cc883117a6c5f9c9671b26"
+content-hash = "d1464404b02a4c2a90b71de8142dfa740502b96acc8db2ec1558f41c299a5038"
