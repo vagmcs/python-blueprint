@@ -128,6 +128,10 @@ exclude = [
 ]
 
 
+[tool.ruff.format]
+docstring-code-format = true
+
+
 [tool.pytest.ini_options]
 addopts = "--capture=no --doctest-modules --doctest-continue-on-failure"
 doctest_optionflags = [
