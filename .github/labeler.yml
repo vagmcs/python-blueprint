@@ -2,14 +2,22 @@ ci:
   - changed-files:
       - any-glob-to-any-file: [".github/**", ".pre-commit-config.yaml"]
 
+build:
+  - changed-files:
+      - any-glob-to-any-file: ["pyproject.toml", "Makefile", ".python-version"]
+
 docs:
   - changed-files:
       - any-glob-to-any-file: ["docs/**", "**/*.md"]
 
-internal:
+core:
   - changed-files:
-      - any-glob-to-any-file: ["project/**"]
+      - any-glob-to-any-file: ["project/**", "notebooks/**"]
 
-testing:
+data:
+  - changed-files:
+      - any-glob-to-any-file: ["sql/**"]
+
+tests:
   - changed-files:
       - any-glob-to-any-file: ["tests/**"]
