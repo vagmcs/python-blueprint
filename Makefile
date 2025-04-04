@@ -23,7 +23,7 @@ clean:
 .PHONY: format
 format:
 	@poetry run isort $(PROJECT_NAME) tests
-	@poetry run black $(PROJECT_NAME) tests
+	@poetry run ruff format notebooks $(PROJECT_NAME) tests
 	@poetry run docformatter $(PROJECT_NAME) tests || true
 	@poetry run sqlfluff fix sql
 
@@ -31,8 +31,7 @@ format:
 .PHONY: lint
 lint:
 	@poetry check
-	@poetry run ruff check --diff --no-fix $(PROJECT_NAME) tests
-	@poetry run ruff format --check --diff $(PROJECT_NAME) tests
+	@poetry run ruff check notebooks $(PROJECT_NAME) tests
 	@poetry run mypy $(PROJECT_NAME) tests
 
 ### test           : Run tests
