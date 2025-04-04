@@ -3,7 +3,7 @@ name = "project"
 version = "0.0.1"
 description = "A python blueprint to configure projects."
 authors = [ "Evangelos Michelioudakis <vagmcs@gmail.com>" ]
-license = ""
+license = "MIT"
 readme = "README.md"
 keywords = [ ]
 repository = "https://github.com/vagmcs/python-blueprint"
@@ -37,11 +37,6 @@ commitizen = "^4.4.1"
 cz-conventional-gitmoji = "^0.6.1"
 
 
-[tool.poetry.group.dev.dependencies.black]
-extras = [ "jupyter" ]
-version = "^25.1.0"
-
-
 [tool.poetry.requires-plugins]
 poetry-docker-plugin = ">=0.5.4"
 
@@ -67,12 +62,6 @@ check_untyped_defs = true
 no_implicit_optional = true
 strict_equality = true
 implicit_reexport = true
-
-
-[tool.black]
-line_length = 120
-target_version = [ "py310", "py311", "py312" ]
-color = true
 
 
 [tool.docformatter]
