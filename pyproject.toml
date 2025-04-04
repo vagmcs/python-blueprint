@@ -128,6 +128,16 @@ exclude = [
 ]
 
 
+[tool.pytest.ini_options]
+addopts = "--capture=no --doctest-modules --doctest-continue-on-failure"
+doctest_optionflags = [
+"NUMBER",
+"NORMALIZE_WHITESPACE",
+"DONT_ACCEPT_TRUE_FOR_1",
+"IGNORE_EXCEPTION_DETAIL"
+]
+
+
 [tool.commitizen]
 name = "cz_gitmoji"
 version_scheme = "pep440"
