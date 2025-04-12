@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: toshimaru/auto-author-assign@v2.1.1
   labeler:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v5
