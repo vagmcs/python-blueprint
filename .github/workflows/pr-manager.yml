@@ -16,15 +16,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: toshimaru/auto-author-assign@v2.1.1
-  labeler:
+  assign-labels:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v5
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
   check:
     if: always()
     needs:
     - assign-author
-    - labeler
+    - assign-labels
     runs-on: ubuntu-latest
 
     steps:
