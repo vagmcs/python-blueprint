@@ -26,7 +26,6 @@ jobs:
       - uses: actions/labeler@v5
         with:
           sync-labels: true
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
   check:
     if: always()
     needs:
