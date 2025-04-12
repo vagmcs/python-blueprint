@@ -1,7 +1,7 @@
 name: Pull Request Manager
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - synchronize
@@ -18,6 +18,7 @@ jobs:
       - uses: toshimaru/auto-author-assign@v2.1.1
   assign-labels:
     permissions:
+      contents: read
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
