@@ -133,7 +133,7 @@ docstring-code-format = true
 
 
 [tool.pytest.ini_options]
-addopts = "--capture=no --doctest-modules --doctest-continue-on-failure"
+addopts = "--capture=no --doctest-modules --cov=project --no-cov-on-fail"
 doctest_optionflags = [
 "NUMBER",
 "NORMALIZE_WHITESPACE",
