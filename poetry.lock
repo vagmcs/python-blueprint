@@ -294,14 +294,14 @@ toml = ["tomli ; python_full_version <= \"3.11.0a6\""]
 
 [[package]]
 name = "cz-conventional-gitmoji"
-version = "0.6.1"
+version = "0.7.0"
 description = "A commitizen plugin that combines gitmoji and conventional."
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "cz_conventional_gitmoji-0.6.1-py3-none-any.whl", hash = "sha256:db8f51ea2f41389e6cc9986234524df6b4e1a3846ad738f5b946a811c3948623"},
-    {file = "cz_conventional_gitmoji-0.6.1.tar.gz", hash = "sha256:3fd4b355fa9a1ffc31192112f1807ab6c33203204c00f38a54c80643a2f407b8"},
+    {file = "cz_conventional_gitmoji-0.7.0-py3-none-any.whl", hash = "sha256:278b817d306efa5b446db8d078288c42534cfff56662a344da0053c24b50701b"},
+    {file = "cz_conventional_gitmoji-0.7.0.tar.gz", hash = "sha256:d1a672d570911147cc27a17ba15877e5ef279b91c51a8da9a89523f27325a261"},
 ]
 
 [package.dependencies]
@@ -1459,4 +1459,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "0548e8d5708e0acb902c3fdcb80051e6dba9c64efeaa887285e56db6b563947a"
+content-hash = "27acfbce792cfe595c96cee4d2339b0ea0b23824d519c174ceb8ac11a59e83aa"
