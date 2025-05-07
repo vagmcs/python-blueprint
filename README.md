@@ -1,6 +1,12 @@
 # Python Blueprint
 
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-![Static Badge](https://img.shields.io/badge/type%20checked-mypy-039dfc)
+*Python blueprint is a template for configuring projects.*
+
+<a href="https://github.com/vagmcs/python-blueprint/actions/workflows/tester.yml" target="_blank">
+    <img src="https://github.com/vagmcs/python-blueprint/actions/workflows/tester.yml/badge.svg?event=push&branch=main" alt="Test">
+</a>
+<a href="https://results.pre-commit.ci/latest/github/vagmcs/python-blueprint/main" target="_blank">
+    <img src="https://results.pre-commit.ci/badge/github/vagmcs/python-blueprint/main.svg" alt="pre-commit.ci status">
+</a>
+
+---
