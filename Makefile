@@ -22,7 +22,10 @@ clean:
 ### format         : Format source
 .PHONY: format
 format:
+	@poetry run pyupgrade --py310-plus **/*.py || true
+	@poetry run nbqa pyupgrade --py310-plus **/*.ipynb || true
 	@poetry run isort $(PROJECT_NAME) tests
+	@poetry run nbqa isort notebooks --float-to-top
 	@poetry run ruff format notebooks $(PROJECT_NAME) tests
 	@poetry run docformatter $(PROJECT_NAME) tests || true
 	@poetry run sqlfluff fix sql
@@ -31,7 +34,7 @@ format:
 .PHONY: lint
 lint:
 	@poetry check
-	@poetry run ruff check notebooks $(PROJECT_NAME) tests
+	@poetry run ruff check --fix notebooks $(PROJECT_NAME) tests
 	@poetry run mypy $(PROJECT_NAME) tests
 
 ### test           : Run tests

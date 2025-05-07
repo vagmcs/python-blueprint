@@ -16,6 +16,11 @@ repos:
       - id: trailing-whitespace
       - id: name-tests-test
 
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.19.1
+    hooks:
+      - id: pyupgrade
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.8
     hooks:
@@ -27,6 +32,14 @@ repos:
     rev: 6.0.1
     hooks:
       - id: isort
+
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.1
+    hooks:
+      - id: nbqa-pyupgrade
+        args: ["--py310-plus"]
+      - id: nbqa-isort
+        args: ["--float-to-top"]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.15.0
