@@ -53,23 +53,19 @@ build: test
 docker:
 	@poetry docker
 
-### bump           : Bump version and generate changelog
+### bump           : Bump version, tag, and generate changelog
 .PHONY: bump
 bump:
-	@perl -i -pe 's/Latest Release/${PROJECT_VERSION}/g' $(RELEASE_NOTES)
-	@cz changelog --incremental --start-rev $(PROJECT_VERSION) --unreleased-version "Latest Release"
-	$(eval BUMP=$(shell poetry version minor | sed -e 's/.*[ ]to[ ]//g'))
-	@git add --all && git commit -m "bump: version ${PROJECT_VERSION} to ${BUMP}"
-	@git tag ${BUMP}
+	@cz bump --increment MINOR
 
-### publish        : Publish the package and documentation
-.PHONY: publish
-publish: build
+### release        : Release the package and documentation
+.PHONY: release
+release: build
 	@echo "Releasing version '$(PROJECT_VERSION)'"
 	@poetry publish
 	@poetry run mkdocs gh-deploy
-	@cz changelog $(PROJECT_VERSION)
-	@gh release create --verify-tag $(PROJECT_VERSION) \
+	@gh release create \
+		--verify-tag $(PROJECT_VERSION) \
 		--notes-file $(RELEASE_NOTES) \
 		dist/$(PROJECT_NAME)-$(PROJECT_VERSION).tar.gz \
 		dist/$(PROJECT_NAME)-$(PROJECT_VERSION)-py3-none-any.whl
