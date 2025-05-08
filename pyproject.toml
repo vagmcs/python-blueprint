@@ -1,13 +1,12 @@
 [project]
 name = "project"
-version = "0.0.1"
 description = "A python blueprint to configure projects."
 authors = [{ name = "Evangelos Michelioudakis", email = "vagmcs@gmail.com" }]
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
 keywords = []
-dynamic = ["classifiers", "dependencies"]
+dynamic = ["version", "classifiers", "dependencies"]
 
 
 [project.urls]
@@ -17,6 +16,7 @@ documentation = "https://github.com/vagmcs/python-blueprint"
 
 
 [tool.poetry]
+version = "0.0.0"
 requires-poetry = ">=2.0"
 packages = [{ include = "project" }]
 classifiers = []
@@ -156,8 +156,9 @@ name = "cz_gitmoji"
 version_scheme = "pep440"
 version_provider = "poetry"
 update_changelog_on_bump = true
-template = "docs/templates/release_notes.j2"
-changelog_file = "docs/docs/release_notes.md"
+template = "docs/templates/changelog.j2"
+changelog_file = "docs/docs/changelog.md"
+release_notes_file = "docs/docs/release_notes.md"
 
 
 [tool.sqlfluff.core]

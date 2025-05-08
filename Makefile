@@ -4,7 +4,7 @@ SHELL:=/usr/bin/env bash -euo pipefail -c
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME:=$(shell poetry version | sed -e 's/[ ].*//g')
 PROJECT_VERSION:=$(shell poetry version | sed -e 's/.*[ ]//g')
-RELEASE_NOTES:=$(shell cat pyproject.toml | grep changelog_file | sed -e 's/.*=[ ]//g')
+RELEASE_NOTES:=$(shell cat pyproject.toml | grep release_notes_file | sed -e 's/.*=[ ]//g')
 
 .PHONY: help
 help:
@@ -53,10 +53,11 @@ build: test
 docker:
 	@poetry docker
 
-### bump           : Bump version, tag, and generate changelog
+### bump           : Bump version and generate changelog (INCREMENT can be PATCH, MINOR or MAJOR)
 .PHONY: bump
 bump:
-	@cz bump --increment MINOR
+	@cz changelog --template docs/templates/release_notes.j2 --file-name $(RELEASE_NOTES)
+	@cz bump --yes --increment $(INCREMENT)
 
 ### release        : Release the package and documentation
 .PHONY: release
