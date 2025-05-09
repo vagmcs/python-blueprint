@@ -2,7 +2,7 @@ SHELL:=/usr/bin/env bash -euo pipefail -c
 .DEFAULT_GOAL := help
 
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-PROJECT_NAME:=$(shell poetry version | sed -e 's/[ ].*//g')
+PROJECT_NAME:=$(shell poetry version | sed -e 's/[ ].*//g' | tr '-' '_')
 PROJECT_VERSION:=$(shell poetry version | sed -e 's/.*[ ]//g')
 RELEASE_NOTES:=$(shell cat pyproject.toml | grep release_notes_file | sed -e 's/.*=[ ]//g')
 
@@ -47,6 +47,11 @@ test:
 build: test
 	@poetry build
 	@poetry run mkdocs build -f docs/mkdocs.yml
+
+### local-docs     : Run local documentation server
+.PHONY: local-docs
+local-docs: build
+	@mkdocs serve -f docs/mkdocs.yml
 
 ### docker         : Build docker image
 .PHONY: docker
