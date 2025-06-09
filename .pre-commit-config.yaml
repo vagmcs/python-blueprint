@@ -22,7 +22,7 @@ repos:
       - id: pyupgrade
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.12
+    rev: v0.11.13
     hooks:
       - id: ruff
         args: [--fix]
@@ -47,7 +47,7 @@ repos:
       - id: mypy
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.27.0
+    rev: v8.27.2
     hooks:
       - id: gitleaks
 
