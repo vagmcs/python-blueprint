@@ -29,6 +29,6 @@ updates:
       prefix-development: chore
     labels: ["skip changelog"]
     groups:
-      rust:
+      python:
         patterns:
           - "*"
