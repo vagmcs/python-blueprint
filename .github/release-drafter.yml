@@ -13,7 +13,7 @@ version-resolver:
 
 replacers:
   # Remove conventional commits from PR titles
-  - search: '/- \p{Emoji}?(build|chore|ci|docs|feat|fix|perf|refactor|release|test|security)(\(.*\))?(\!)?\: /g'
+  - search: '/- \p{Emoji}? (build|chore|ci|docs|feat|fix|perf|refactor|release|test|security)(\(.*\))?(\!)?\: /g'
     replace: "- "
 
 autolabeler:
