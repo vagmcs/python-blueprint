@@ -1413,22 +1413,22 @@ files = [
 
 [[package]]
 name = "returns"
-version = "0.25.0"
+version = "0.26.0"
 description = "Make your functions return something meaningful, typed, and safe!"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "returns-0.25.0-py3-none-any.whl", hash = "sha256:bdc6ec52d28e74d6965f6de5a3af5e39427e67266014b605865fe2e194a75ed0"},
-    {file = "returns-0.25.0.tar.gz", hash = "sha256:1bf547311c0ade25435ce3bbe81642c325ea6b86beaf5d624cd410f0dee3ff50"},
+    {file = "returns-0.26.0-py3-none-any.whl", hash = "sha256:7cae94c730d6c56ffd9d0f583f7a2c0b32cfe17d141837150c8e6cff3eb30d71"},
+    {file = "returns-0.26.0.tar.gz", hash = "sha256:180320e0f6e9ea9845330ccfc020f542330f05b7250941d9b9b7c00203fcc3da"},
 ]
 
 [package.dependencies]
 typing-extensions = ">=4.0,<5.0"
 
 [package.extras]
-check-laws = ["hypothesis (>=6.122,<7.0)", "pytest (>=8.0,<9.0)"]
-compatible-mypy = ["mypy (>=1.12,<1.16)"]
+check-laws = ["hypothesis (>=6.136,<7.0)", "pytest (>=8.0,<9.0)"]
+compatible-mypy = ["mypy (>=1.12,<1.18)"]
 
 [[package]]
 name = "ruff"
@@ -1795,4 +1795,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "43cd09de1a5fda15f26e3a7ecde0e655d71f050aad909d9f66119bd3135c9c26"
+content-hash = "0a46fca25fa53f2bf83547ca286855eca374fd3c82e2c6d6dea615c93bb29873"
