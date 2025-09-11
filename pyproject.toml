@@ -24,7 +24,6 @@ classifiers = []
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-returns = "^0.26.0"
 
 
 [tool.poetry.group.dev.dependencies]
