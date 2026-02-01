@@ -222,14 +222,14 @@ files = [
 
 [[package]]
 name = "commitizen"
-version = "4.11.0"
+version = "4.13.0"
 description = "Python commitizen client tool"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["dev"]
 files = [
-    {file = "commitizen-4.11.0-py3-none-any.whl", hash = "sha256:a30fdf326bb0913b7b25f8b30530c899159b1757efa9969b0aa1808dad102c02"},
-    {file = "commitizen-4.11.0.tar.gz", hash = "sha256:d311297a0165ef9f30e0877e04608b786d5fd69760f32245fbf1c21e793e91df"},
+    {file = "commitizen-4.13.0-py3-none-any.whl", hash = "sha256:95580503e9ddf750f7a7717467ab80bf641e6535b525fa8326386e1323b397da"},
+    {file = "commitizen-4.13.0.tar.gz", hash = "sha256:4d6c90c1e43d83a71b396ca6e65ef3d2e62bfc1961ad3ae7cd8a257478243455"},
 ]
 
 [package.dependencies]
@@ -240,12 +240,12 @@ decli = ">=0.6.0,<1.0"
 deprecated = ">=1.2.13,<2"
 jinja2 = ">=2.10.3"
 packaging = ">=19"
-prompt_toolkit = "!=3.0.52"
-pyyaml = ">=3.08"
+prompt-toolkit = "!=3.0.52"
+pyyaml = ">=3.8"
 questionary = ">=2.0,<3.0"
 termcolor = ">=1.1.0,<4.0.0"
 tomlkit = ">=0.8.0,<1.0.0"
-typing-extensions = {version = ">=4.0.1,<5.0.0", markers = "python_version < \"3.11\""}
+typing-extensions = {version = ">=4.0.1,<5.0.0", markers = "python_full_version < \"3.11.0\""}
 
 [[package]]
 name = "coverage"
@@ -533,14 +533,14 @@ dev = ["flake8", "markdown", "twine", "wheel"]
 
 [[package]]
 name = "hypothesis"
-version = "6.148.5"
+version = "6.151.4"
 description = "The property-based testing library for Python"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "hypothesis-6.148.5-py3-none-any.whl", hash = "sha256:63cde596a48cdbbabac0591ea19a1bffa812c30afbe3d948bc2a8ee8ed49a11a"},
-    {file = "hypothesis-6.148.5.tar.gz", hash = "sha256:bb0c67bff155b8d8cfe8fbc1f1218028f7e2f0ee7f24d8ccc89f4c14ee4e65c0"},
+    {file = "hypothesis-6.151.4-py3-none-any.whl", hash = "sha256:a1cf7e0fdaa296d697a68ff3c0b3912c0050f07aa37e7d2ff33a966749d1d9b4"},
+    {file = "hypothesis-6.151.4.tar.gz", hash = "sha256:658a62da1c3ccb36746ac2f7dc4bb1a6e76bd314e0dc54c4e1aaba2503d5545c"},
 ]
 
 [package.dependencies]
@@ -548,10 +548,10 @@ exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["black (>=20.8b0)", "click (>=7.0)", "crosshair-tool (>=0.0.98)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.26)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.21.6)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.2) ; sys_platform == \"win32\" or sys_platform == \"emscripten\"", "watchdog (>=4.0.0)"]
+all = ["black (>=20.8b0)", "click (>=7.0)", "crosshair-tool (>=0.0.102)", "django (>=4.2)", "dpcontracts (>=0.4)", "hypothesis-crosshair (>=0.0.27)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.21.6)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2025.3) ; sys_platform == \"win32\" or sys_platform == \"emscripten\"", "watchdog (>=4.0.0)"]
 cli = ["black (>=20.8b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
-crosshair = ["crosshair-tool (>=0.0.98)", "hypothesis-crosshair (>=0.0.26)"]
+crosshair = ["crosshair-tool (>=0.0.102)", "hypothesis-crosshair (>=0.0.27)"]
 dateutil = ["python-dateutil (>=1.4)"]
 django = ["django (>=4.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
@@ -563,7 +563,7 @@ pytest = ["pytest (>=4.6)"]
 pytz = ["pytz (>=2014.1)"]
 redis = ["redis (>=3.0.0)"]
 watchdog = ["watchdog (>=4.0.0)"]
-zoneinfo = ["tzdata (>=2025.2) ; sys_platform == \"win32\" or sys_platform == \"emscripten\""]
+zoneinfo = ["tzdata (>=2025.3) ; sys_platform == \"win32\" or sys_platform == \"emscripten\""]
 
 [[package]]
 name = "identify"
@@ -1581,19 +1581,19 @@ files = [
 
 [[package]]
 name = "sqlfluff"
-version = "3.5.0"
+version = "4.0.0"
 description = "The SQL Linter for Humans"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "sqlfluff-3.5.0-py3-none-any.whl", hash = "sha256:6e5fb7a0c491676ded68912245fc0627e88f8b0e6290bd4b54a65ce735f69716"},
-    {file = "sqlfluff-3.5.0.tar.gz", hash = "sha256:2d0a546078ffb021de7021b9a6c2a50e5eef590daa820d5f1b082d24a1d5e1d4"},
+    {file = "sqlfluff-4.0.0-py3-none-any.whl", hash = "sha256:f1fc7e8aa5f9430f099bf81ded08edcfd1fc3d1b05e123b303f70ebf6c1d7654"},
+    {file = "sqlfluff-4.0.0.tar.gz", hash = "sha256:b2478983adbeff096327f20763c78ddc36c5b48871c0ea6b084d296136dc4e3e"},
 ]
 
 [package.dependencies]
 chardet = "*"
-click = "<=8.3.0"
+click = "<8.4.0"
 colorama = ">=0.3"
 diff-cover = ">=2.5.0"
 Jinja2 = "*"
@@ -1605,6 +1605,9 @@ regex = "*"
 tblib = "*"
 tomli = {version = "*", markers = "python_version < \"3.11\""}
 tqdm = "*"
+
+[package.extras]
+rs = ["sqlfluffrs (==4.0.0)"]
 
 [[package]]
 name = "stack-data"
@@ -1979,4 +1982,4 @@ dev = ["pytest", "setuptools"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "a44a126dc6ad11ae897bab80e6151d8df2c0a0f9c252647719368a80648d7869"
+content-hash = "d56f277ba97e8641dfc65ed25c8d1d477f9aec90072ce0a54cc3583b6d6118ca"
