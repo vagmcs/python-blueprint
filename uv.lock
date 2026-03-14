@@ -42,15 +42,6 @@ wheels = [
 ]
 
 [[package]]
-name = "attrs"
-version = "25.4.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/6b/5c/685e6633917e101e5dcb62b9dd76946cbb57c26e133bae9e0cd36033c0a9/attrs-25.4.0.tar.gz", hash = "sha256:16d5969b87f0859ef33a48b35d55ac1be6e42ae49d5e853b597db70c35c57e11", size = 934251, upload-time = "2025-10-06T13:54:44.725Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/3a/2a/7cc015f5b9f5db42b7d48157e23356022889fc354a2813c15934b7cb5c0e/attrs-25.4.0-py3-none-any.whl", hash = "sha256:adcf7e2a1fb3b36ac48d97835bb6d8ade15b8dcce26aba8bf1d14847b57a3373", size = 67615, upload-time = "2025-10-06T13:54:43.17Z" },
-]
-
-[[package]]
 name = "basedpyright"
 version = "1.38.2"
 source = { registry = "https://pypi.org/simple" }
@@ -446,19 +437,6 @@ wheels = [
 [package.optional-dependencies]
 toml = [
     { name = "tomli", marker = "python_full_version <= '3.11'" },
-]
-
-[[package]]
-name = "cz-conventional-gitmoji"
-version = "0.7.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "attrs" },
-    { name = "commitizen" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/b8/80/5402e92d019860c88772e5d7bcdd812f1e0c7f24b51fdbb503bdb55e64f2/cz_conventional_gitmoji-0.7.0.tar.gz", hash = "sha256:d1a672d570911147cc27a17ba15877e5ef279b91c51a8da9a89523f27325a261", size = 13958, upload-time = "2025-04-01T22:04:16.607Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/60/47/3d7d559850a8146bb08adb01486156339d49271aff38e11729707ab996ee/cz_conventional_gitmoji-0.7.0-py3-none-any.whl", hash = "sha256:278b817d306efa5b446db8d078288c42534cfff56662a344da0053c24b50701b", size = 15157, upload-time = "2025-04-01T22:04:15.393Z" },
 ]
 
 [[package]]
@@ -1214,7 +1192,6 @@ source = { editable = "." }
 dev = [
     { name = "basedpyright" },
     { name = "commitizen" },
-    { name = "cz-conventional-gitmoji" },
     { name = "hypothesis" },
     { name = "ipykernel" },
     { name = "mkdocs" },
@@ -1234,7 +1211,6 @@ dev = [
 dev = [
     { name = "basedpyright", specifier = ">=1.38.2" },
     { name = "commitizen", specifier = ">=4.13.9" },
-    { name = "cz-conventional-gitmoji", specifier = ">=0.7.0" },
     { name = "hypothesis", specifier = ">=6.151.9" },
     { name = "ipykernel", specifier = ">=7.2.0" },
     { name = "mkdocs", specifier = ">=1.6.1" },

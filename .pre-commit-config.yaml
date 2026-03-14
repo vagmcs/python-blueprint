@@ -17,7 +17,7 @@ repos:
       - id: name-tests-test
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.11
+    rev: v0.15.6
     hooks:
       - id: ruff-check
         args: [--fix]
@@ -28,10 +28,11 @@ repos:
     hooks:
       - id: gitleaks
 
-  - repo: https://github.com/ljnsn/cz-conventional-gitmoji
-    rev: v0.7.0
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.13.9
     hooks:
-      - id: conventional-gitmoji
+      - id: commitizen
+        stages: [commit-msg]
 
 ci:
   autofix_commit_msg: "ci: Auto fixes from pre-commit.com hooks"
