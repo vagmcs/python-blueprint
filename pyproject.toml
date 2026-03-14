@@ -1,12 +1,14 @@
 [project]
-name = "project"
+name = "python-blueprint"
+version = "0.0.0"
 description = "A python blueprint to configure projects."
 authors = [{ name = "Evangelos Michelioudakis", email = "vagmcs@gmail.com" }]
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 requires-python = ">=3.10"
 keywords = []
-dynamic = ["version", "classifiers", "dependencies"]
+classifiers = ["Private :: Do Not Upload"]
+dependencies = []
 
 
 [project.urls]
@@ -15,61 +17,45 @@ repository = "https://github.com/vagmcs/python-blueprint"
 documentation = "https://github.com/vagmcs/python-blueprint"
 
 
-[tool.poetry]
-version = "0.0.0"
-requires-poetry = ">=2.0"
-packages = [{ include = "project" }]
-classifiers = []
+[tool.hatch.build.targets.wheel]
+packages = ["project"]
 
 
-[tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+[dependency-groups]
+dev = [
+    "basedpyright>=1.38.2",
+    "commitizen>=4.13.9",
+    "cz-conventional-gitmoji>=0.7.0",
+    "docformatter>=1.7.7",
+    "hypothesis>=6.151.9",
+    "mkdocs>=1.6.1",
+    "nbqa>=1.9.1",
+    "poethepoet>=0.42.1",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "pytest-mock>=3.15.1",
+    "pytest-sugar>=1.1.1",
+    "pyupgrade>=3.21.2",
+    "ruff>=0.15.6",
+    "sqlfluff>=4.0.4",
+]
 
 
-[tool.poetry.group.dev.dependencies]
-docformatter = "^1.7.7"
-nbqa = "^1.9.1"
-isort = "^7.0.0"
-ruff = "^0.14.3"
-sqlfluff = "^3.5.0"
-mypy = "^1.19.0"
-pyupgrade = "^3.21.0"
-pytest = "^9.0.1"
-pytest-cov = "^7.0.0"
-pytest-sugar = "^1.1.1"
-pytest-mock = "^3.15.1"
-hypothesis = "^6.148.5"
-mkdocs = "^1.6.1"
-pre-commit = "^4.5.0"
-commitizen = "^4.11.0"
-cz-conventional-gitmoji = "^0.7.0"
-
-
-[tool.poetry.requires-plugins]
-poetry-docker-plugin = ">=0.5.4"
-
-
-[tool.mypy]
-python_version = "3.10"
+[tool.basedpyright]
 exclude = [".venv", "dist"]
-pretty = true
-show_column_numbers = true
-show_error_codes = true
-show_error_context = true
-warn_unused_configs = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unreachable = true
-warn_unused_ignores = true
-warn_no_return = true
-ignore_missing_imports = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-disallow_untyped_decorators = true
-check_untyped_defs = true
-no_implicit_optional = true
-strict_equality = true
-implicit_reexport = true
+pythonVersion = "3.10"
+pythonPlatform = "All"
+typeCheckingMode = "standard"
+reportMissingModuleSource = "warning"
+reportUnreachable = "error"
+reportUnnecessaryTypeIgnoreComment = "warning"
+reportArgumentType = "error"
+reportUnnecessaryComparison = "error"
+reportUnknownParameterType = "warning"
+reportMissingParameterType = "warning"
+reportReturnType = "error"
+reportPrivateImportUsage = "warning"
 
 
 [tool.docformatter]
@@ -80,27 +66,17 @@ pre-summary-newline = true
 make-summary-multi-line = true
 
 
-[tool.isort]
-profile = "black"
-line_length = 120
-multi_line_output = 3
-use_parentheses = true
-include_trailing_comma = true
-color_output = true
-sections = [
-    "FUTURE",
-    "TYPING",
-    "STDLIB",
-    "THIRDPARTY",
-    "FIRSTPARTY",
-    "LOCALFOLDER",
-]
-known_typing = "typing"
-import_heading_future = "Futures"
-import_heading_stdlib = "Standard Library"
-import_heading_typing = "Types"
-import_heading_thirdparty = "Dependencies"
-import_heading_firstparty = "Project"
+[tool.ruff.lint]
+select = ["I"]
+
+[tool.ruff.lint.isort]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.ruff.lint.isort.import-heading]
+future = "Futures"
+standard-library = "Standard Library"
+third-party = "Dependencies"
+first-party = "Project"
 
 
 [tool.ruff]
@@ -152,6 +128,7 @@ doctest_optionflags = [
 [tool.coverage.run]
 data_file = "coverage/.coverage"
 
+
 [tool.commitizen]
 name = "cz_gitmoji"
 version_scheme = "pep440"
@@ -172,5 +149,95 @@ capitalisation_policy = "upper"
 
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[tool.poe.env]
+RELEASE_NOTES_FILE = "docs/docs/release_notes.md"
+
+# --- Helper tasks to extract project metadata ---
+
+[tool.poe.tasks._project_name]
+shell = "python -c \"import importlib.metadata; print(importlib.metadata.metadata('python-blueprint')['Name'].replace('-', '_'))\""
+
+[tool.poe.tasks._project_version]
+shell = "python -c \"import importlib.metadata; print(importlib.metadata.metadata('python-blueprint')['Version'])\""
+
+# --- Public tasks ---
+
+[tool.poe.tasks.clean]
+help = "Clean build artifacts"
+script = "poethepoet.scripts:rm('dist', 'docs/site')"
+
+[tool.poe.tasks.format]
+help = "Format source code"
+uses = { PROJECT_NAME = "_project_name" }
+shell = """
+    uv run pyupgrade --py310-plus **/*.py || true
+    uv run nbqa pyupgrade --py310-plus **/*.ipynb || true
+    uv run ruff check --select I --fix ${PROJECT_NAME} tests notebooks
+    uv run ruff format notebooks ${PROJECT_NAME} tests
+    uv run docformatter ${PROJECT_NAME} tests || true
+    uv run sqlfluff fix sql
+"""
+
+[tool.poe.tasks.lint]
+help = "Run linter and all type checkers"
+sequence = ["_lint_ruff", "lint-basedpyright"]
+
+[tool.poe.tasks._lint_ruff]
+uses = { PROJECT_NAME = "_project_name" }
+shell = "uv run ruff check --fix notebooks ${PROJECT_NAME} tests"
+
+[tool.poe.tasks.lint-basedpyright]
+help = "Type check with basedpyright"
+cmd = "uv run python scripts/basedpyright project tests notebooks"
+
+[tool.poe.tasks.test]
+help = "Run tests"
+cmd = "uv run pytest"
+
+[tool.poe.tasks.build]
+help = "Run tests, build docs and package"
+sequence = ["test", "_build_package", "_build_docs"]
+
+[tool.poe.tasks._build_package]
+cmd = "uv build"
+
+[tool.poe.tasks._build_docs]
+cmd = "uv run mkdocs build -f docs/mkdocs.yml"
+
+[tool.poe.tasks.local-docs]
+help = "Run local documentation server"
+sequence = ["build", "_serve_docs"]
+
+[tool.poe.tasks._serve_docs]
+cmd = "uv run mkdocs serve -f docs/mkdocs.yml"
+
+[tool.poe.tasks.bump]
+help = "Bump version and generate changelog (use -- --increment PATCH|MINOR|MAJOR)"
+shell = """
+    cz changelog --template docs/templates/release_notes.j2 --file-name ${RELEASE_NOTES_FILE}
+    cz bump --yes
+"""
+
+[tool.poe.tasks.release]
+help = "Release the package and documentation"
+sequence = ["build", "_publish", "_deploy_docs", "_gh_release"]
+
+[tool.poe.tasks._publish]
+cmd = "uv publish"
+
+[tool.poe.tasks._deploy_docs]
+cmd = "uv run mkdocs gh-deploy"
+
+[tool.poe.tasks._gh_release]
+uses = { PROJECT_NAME = "_project_name", PROJECT_VERSION = "_project_version" }
+shell = """
+    gh release create \
+        --verify-tag ${PROJECT_VERSION} \
+        --notes-file ${RELEASE_NOTES_FILE} \
+        dist/${PROJECT_NAME}-${PROJECT_VERSION}.tar.gz \
+        dist/${PROJECT_NAME}-${PROJECT_VERSION}-py3-none-any.whl
+    """
