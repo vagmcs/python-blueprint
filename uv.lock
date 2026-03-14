@@ -545,19 +545,6 @@ wheels = [
 ]
 
 [[package]]
-name = "docformatter"
-version = "1.7.7"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "charset-normalizer" },
-    { name = "untokenize" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/2a/7b/ee08cb5fe2627ed0b6f0cc4a1c6be6c9c71de5a3e9785de8174273fc3128/docformatter-1.7.7.tar.gz", hash = "sha256:ea0e1e8867e5af468dfc3f9e947b92230a55be9ec17cd1609556387bffac7978", size = 26587, upload-time = "2025-05-11T04:54:04.356Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/dc/b4/a7ec1eaee86761a9dbfd339732b4706db3c6b65e970c12f0f56cfcce3dcf/docformatter-1.7.7-py3-none-any.whl", hash = "sha256:7af49f8a46346a77858f6651f431b882c503c2f4442c8b4524b920c863277834", size = 33525, upload-time = "2025-05-11T04:54:03.353Z" },
-]
-
-[[package]]
 name = "exceptiongroup"
 version = "1.3.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1228,7 +1215,6 @@ dev = [
     { name = "basedpyright" },
     { name = "commitizen" },
     { name = "cz-conventional-gitmoji" },
-    { name = "docformatter" },
     { name = "hypothesis" },
     { name = "ipykernel" },
     { name = "mkdocs" },
@@ -1249,7 +1235,6 @@ dev = [
     { name = "basedpyright", specifier = ">=1.38.2" },
     { name = "commitizen", specifier = ">=4.13.9" },
     { name = "cz-conventional-gitmoji", specifier = ">=0.7.0" },
-    { name = "docformatter", specifier = ">=1.7.7" },
     { name = "hypothesis", specifier = ">=6.151.9" },
     { name = "ipykernel", specifier = ">=7.2.0" },
     { name = "mkdocs", specifier = ">=1.6.1" },
@@ -1778,12 +1763,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/72/94/1a15dd82efb362ac8
 wheels = [
     { url = "https://files.pythonhosted.org/packages/18/67/36e9267722cc04a6b9f15c7f3441c2363321a3ea07da7ae0c0707beb2a9c/typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548", size = 44614, upload-time = "2025-08-25T13:49:24.86Z" },
 ]
-
-[[package]]
-name = "untokenize"
-version = "0.1.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/f7/46/e7cea8159199096e1df52da20a57a6665da80c37fb8aeb848a3e47442c32/untokenize-0.1.1.tar.gz", hash = "sha256:3865dbbbb8efb4bb5eaa72f1be7f3e0be00ea8b7f125c69cbd1f5fda926f37a2", size = 3099, upload-time = "2014-02-08T16:30:40.631Z" }
 
 [[package]]
 name = "virtualenv"

@@ -26,7 +26,6 @@ dev = [
     "basedpyright>=1.38.2",
     "commitizen>=4.13.9",
     "cz-conventional-gitmoji>=0.7.0",
-    "docformatter>=1.7.7",
     "hypothesis>=6.151.9",
     "ipykernel>=7.2.0",
     "mkdocs>=1.6.1",
@@ -49,14 +48,6 @@ reportMissingImports = "warning"
 reportMissingModuleSource = "warning"
 
 
-[tool.docformatter]
-black = true
-in-place = true
-recursive = true
-pre-summary-newline = true
-make-summary-multi-line = true
-
-
 [tool.ruff]
 line-length = 120
 target-version = "py310"
@@ -66,7 +57,11 @@ extend-exclude = [".ipynb_checkpoints"]
 docstring-code-format = true
 
 [tool.ruff.lint]
-select = ["I", "UP"]
+select = ["D", "I", "UP"]
+ignore = ["D1"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.lint.isort]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
@@ -132,7 +127,6 @@ script = "poethepoet.scripts:rm('dist', 'docs/site')"
 help = "Format source code"
 shell = """
     uv run ruff format notebooks ${PROJECT_NAME} tests
-    uv run docformatter ${PROJECT_NAME} tests || true
     uv run sqlfluff fix sql
 """
 
