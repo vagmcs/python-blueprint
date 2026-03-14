@@ -16,45 +16,23 @@ repos:
       - id: trailing-whitespace
       - id: name-tests-test
 
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.2
-    hooks:
-      - id: pyupgrade
-
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.11
+    rev: v0.15.6
     hooks:
-      - id: ruff
+      - id: ruff-check
         args: [--fix]
       - id: ruff-format
-
-  - repo: https://github.com/pycqa/isort
-    rev: 7.0.0
-    hooks:
-      - id: isort
-
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.9.1
-    hooks:
-      - id: nbqa-pyupgrade
-        args: ["--py310-plus"]
-      - id: nbqa-isort
-        args: ["--float-to-top"]
-
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.19.1
-    hooks:
-      - id: mypy
 
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.0
     hooks:
       - id: gitleaks
 
-  - repo: https://github.com/ljnsn/cz-conventional-gitmoji
-    rev: v0.7.0
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.13.9
     hooks:
-      - id: conventional-gitmoji
+      - id: commitizen
+        stages: [commit-msg]
 
 ci:
   autofix_commit_msg: "ci: Auto fixes from pre-commit.com hooks"

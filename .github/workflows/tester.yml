@@ -23,16 +23,14 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install Poetry
-        run: |
-          pip install poetry
-          poetry config virtualenvs.create false
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
 
       - name: Install Dependencies
-        run: poetry install --only=dev
+        run: uv sync --only-group dev
 
       - name: Lint
-        run: make lint
+        run: uv run poe lint
 
   test:
     needs: [lint]
@@ -40,42 +38,41 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.14"
+          - "3.13"
           - "3.12"
           - "3.11"
           - "3.10"
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v6
-      with:
-        fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v6
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install Poetry
-      run: |
-        pip install poetry
-        poetry config virtualenvs.create false
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
 
-    - name: Install Dependencies
-      run: poetry install
+      - name: Install Dependencies
+        run: uv sync
 
-    - name: Run tests
-      shell: bash
-      run: make test
+      - name: Run tests
+        run: uv run poe test
 
   check:
     if: always()
     needs:
-    - lint
-    - test
+      - lint
+      - test
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check whether the needed jobs succeeded or failed
-      uses: re-actors/alls-green@release/v1
-      with:
-        jobs: ${{ toJSON(needs) }}
+      - name: Check whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
