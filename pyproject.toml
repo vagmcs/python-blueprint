@@ -28,34 +28,25 @@ dev = [
     "cz-conventional-gitmoji>=0.7.0",
     "docformatter>=1.7.7",
     "hypothesis>=6.151.9",
+    "ipykernel>=7.2.0",
     "mkdocs>=1.6.1",
-    "nbqa>=1.9.1",
     "poethepoet>=0.42.1",
     "pre-commit>=4.5.1",
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
     "pytest-mock>=3.15.1",
     "pytest-sugar>=1.1.1",
-    "pyupgrade>=3.21.2",
     "ruff>=0.15.6",
     "sqlfluff>=4.0.4",
 ]
 
 
 [tool.basedpyright]
-exclude = [".venv", "dist"]
 pythonVersion = "3.10"
-pythonPlatform = "All"
-typeCheckingMode = "standard"
+typeCheckingMode = "recommended"
+failOnWarnings = false
+reportMissingImports = "warning"
 reportMissingModuleSource = "warning"
-reportUnreachable = "error"
-reportUnnecessaryTypeIgnoreComment = "warning"
-reportArgumentType = "error"
-reportUnnecessaryComparison = "error"
-reportUnknownParameterType = "warning"
-reportMissingParameterType = "warning"
-reportReturnType = "error"
-reportPrivateImportUsage = "warning"
 
 
 [tool.docformatter]
@@ -66,8 +57,16 @@ pre-summary-newline = true
 make-summary-multi-line = true
 
 
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = [".ipynb_checkpoints"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
 [tool.ruff.lint]
-select = ["I"]
+select = ["I", "UP"]
 
 [tool.ruff.lint.isort]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
@@ -77,43 +76,6 @@ future = "Futures"
 standard-library = "Standard Library"
 third-party = "Dependencies"
 first-party = "Project"
-
-
-[tool.ruff]
-line-length = 120
-target-version = "py310"
-exclude = [
-    ".bzr",
-    ".direnv",
-    ".eggs",
-    ".git",
-    ".git-rewrite",
-    ".hg",
-    ".ipynb_checkpoints",
-    ".mypy_cache",
-    ".nox",
-    ".pants.d",
-    ".pyenv",
-    ".pytest_cache",
-    ".pytype",
-    ".ruff_cache",
-    ".svn",
-    ".tox",
-    ".venv",
-    ".vscode",
-    "__pypackages__",
-    "_build",
-    "buck-out",
-    "build",
-    "dist",
-    "node_modules",
-    "site-packages",
-    "venv",
-]
-
-
-[tool.ruff.format]
-docstring-code-format = true
 
 
 [tool.pytest.ini_options]
@@ -132,7 +94,7 @@ data_file = "coverage/.coverage"
 [tool.commitizen]
 name = "cz_gitmoji"
 version_scheme = "pep440"
-version_provider = "poetry"
+version_provider = "uv"
 update_changelog_on_bump = true
 template = "docs/templates/changelog.j2"
 changelog_file = "docs/docs/changelog.md"
@@ -143,7 +105,6 @@ release_notes_file = "docs/docs/release_notes.md"
 dialect = "ansi"
 max_line_length = 120
 
-
 [tool.sqlfluff.rules.capitalisation.keywords]
 capitalisation_policy = "upper"
 
@@ -153,18 +114,15 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 
+[tool.poe]
+verbosity = -1
+
 [tool.poe.env]
+PROJECT_NAME = "project"
 RELEASE_NOTES_FILE = "docs/docs/release_notes.md"
-
-# --- Helper tasks to extract project metadata ---
-
-[tool.poe.tasks._project_name]
-shell = "python -c \"import importlib.metadata; print(importlib.metadata.metadata('python-blueprint')['Name'].replace('-', '_'))\""
 
 [tool.poe.tasks._project_version]
 shell = "python -c \"import importlib.metadata; print(importlib.metadata.metadata('python-blueprint')['Version'])\""
-
-# --- Public tasks ---
 
 [tool.poe.tasks.clean]
 help = "Clean build artifacts"
@@ -172,41 +130,34 @@ script = "poethepoet.scripts:rm('dist', 'docs/site')"
 
 [tool.poe.tasks.format]
 help = "Format source code"
-uses = { PROJECT_NAME = "_project_name" }
 shell = """
-    uv run pyupgrade --py310-plus **/*.py || true
-    uv run nbqa pyupgrade --py310-plus **/*.ipynb || true
-    uv run ruff check --select I --fix ${PROJECT_NAME} tests notebooks
     uv run ruff format notebooks ${PROJECT_NAME} tests
     uv run docformatter ${PROJECT_NAME} tests || true
     uv run sqlfluff fix sql
 """
 
 [tool.poe.tasks.lint]
-help = "Run linter and all type checkers"
-sequence = ["_lint_ruff", "lint-basedpyright"]
-
-[tool.poe.tasks._lint_ruff]
-uses = { PROJECT_NAME = "_project_name" }
-shell = "uv run ruff check --fix notebooks ${PROJECT_NAME} tests"
-
-[tool.poe.tasks.lint-basedpyright]
-help = "Type check with basedpyright"
-cmd = "uv run python scripts/basedpyright project tests notebooks"
+help = "Run linter and type checker"
+shell = """
+    uv run ruff check --fix ${PROJECT_NAME} tests notebooks
+    uv run basedpyright ${PROJECT_NAME} tests notebooks
+"""
 
 [tool.poe.tasks.test]
 help = "Run tests"
 cmd = "uv run pytest"
 
-[tool.poe.tasks.build]
-help = "Run tests, build docs and package"
-sequence = ["test", "_build_package", "_build_docs"]
-
-[tool.poe.tasks._build_package]
+[tool.poe.tasks.package]
+help = "Package project"
 cmd = "uv build"
 
-[tool.poe.tasks._build_docs]
+[tool.poe.tasks.build-docs]
+help = "Build documentation"
 cmd = "uv run mkdocs build -f docs/mkdocs.yml"
+
+[tool.poe.tasks.build]
+help = "Run tests, build docs and package"
+sequence = ["test", "package", "build-docs"]
 
 [tool.poe.tasks.local-docs]
 help = "Run local documentation server"
@@ -218,22 +169,19 @@ cmd = "uv run mkdocs serve -f docs/mkdocs.yml"
 [tool.poe.tasks.bump]
 help = "Bump version and generate changelog (use -- --increment PATCH|MINOR|MAJOR)"
 shell = """
-    cz changelog --template docs/templates/release_notes.j2 --file-name ${RELEASE_NOTES_FILE}
-    cz bump --yes
+    uv run cz changelog --template docs/templates/release_notes.j2 --file-name ${RELEASE_NOTES_FILE}
+    uv run cz bump --yes
 """
 
-[tool.poe.tasks.release]
-help = "Release the package and documentation"
-sequence = ["build", "_publish", "_deploy_docs", "_gh_release"]
 
-[tool.poe.tasks._publish]
+[tool.poe.tasks.publish]
 cmd = "uv publish"
 
-[tool.poe.tasks._deploy_docs]
+[tool.poe.tasks.deploy_docs]
 cmd = "uv run mkdocs gh-deploy"
 
-[tool.poe.tasks._gh_release]
-uses = { PROJECT_NAME = "_project_name", PROJECT_VERSION = "_project_version" }
+[tool.poe.tasks.gh-release]
+uses = { PROJECT_VERSION = "_project_version" }
 shell = """
     gh release create \
         --verify-tag ${PROJECT_VERSION} \
@@ -241,3 +189,7 @@ shell = """
         dist/${PROJECT_NAME}-${PROJECT_VERSION}.tar.gz \
         dist/${PROJECT_NAME}-${PROJECT_VERSION}-py3-none-any.whl
     """
+
+[tool.poe.tasks.release]
+help = "Release the package and documentation"
+sequence = ["build", "publish", "deploy_docs", "gh-release"]
