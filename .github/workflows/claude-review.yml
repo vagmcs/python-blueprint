@@ -27,7 +27,7 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
             REPO: ${{ github.repository }}
-            PR NUMBER: ${{ inputs.pr_number }}
+            PR NUMBER: ${{ github.pr_number }}
 
             You are a careful PR reviewer. Review the PR diff (gh pr diff) and create
             actionable, inline feedback, without running builds or tests.
