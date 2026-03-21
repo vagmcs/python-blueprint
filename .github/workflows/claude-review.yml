@@ -1,4 +1,4 @@
-name: Claude Review
+name: Claude
 
 on:
   pull_request:
@@ -22,6 +22,7 @@ jobs:
 
       - name: Claude PR Review
         id: claude-pr-review
+        continue-on-error: true
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
