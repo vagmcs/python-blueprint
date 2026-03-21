@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   update_release_draft:
+    if: false # disabled by default
     permissions:
       contents: write
       pull-requests: read
