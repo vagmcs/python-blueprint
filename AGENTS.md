@@ -31,7 +31,7 @@ uv run pre-commit run --all-files  # Run all pre-commit hooks manually
 - **Line length:** 120 | **Formatter:** `ruff format` | **Type checker:** `basedpyright` (recommended mode)
 - **Linter rules:** `D` (Google docstrings), `I` (isort), `UP` (pyupgrade) — `D1` ignored
 - **Naming:** `snake_case` functions/variables, `PascalCase` classes, `UPPER_SNAKE_CASE` constants, `_leading_underscore` private
-**Docstrings:** Google-style with doctests where applicable (`--doctest-modules` is always on).
+- **Docstrings:** Google-style with doctests where applicable (`--doctest-modules` is always on).
 
 ## Testing
 
