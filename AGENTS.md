@@ -2,7 +2,7 @@
 
 ## File Structure
 
-```text
+```
 project/       # Production source code
 tests/         # Pytest suite
 docs/          # MkDocs docs (source in docs/docs/, templates in docs/templates/)
@@ -37,11 +37,6 @@ uv run pre-commit run --all-files  # Run all pre-commit hooks manually
 
 `pytest` + `pytest-cov`, `pytest-mock`, `pytest-sugar`, `hypothesis`. Coverage targets `project/`; exit code 5 (no tests collected) is treated as success.
 
-```sh
-uv run poe test                     # Full suite
-uv run pytest tests/test_foo.py -v  # Single file
-```
-
 ## Git Workflow
 
 Commits and PR titles **must** follow [Conventional Commits](https://www.conventionalcommits.org/), enforced by `commitizen` on `commit-msg` and `pr-title-checker` in CI.
@@ -51,12 +46,6 @@ Commits and PR titles **must** follow [Conventional Commits](https://www.convent
 ```
 
 Types: `build` `chore` `ci` `docs` `feat` `fix` `perf` `refactor` `release` `test` `security` — append `!` for breaking changes.
-
-```
-feat: Add retry logic to HTTP client
-fix(parser): Handle empty input gracefully
-feat!: Drop Python 3.9 support
-```
 
 PRs target `main`. Labels are auto-assigned from the title. Use `skip changelog` to omit a PR from release notes.
 
