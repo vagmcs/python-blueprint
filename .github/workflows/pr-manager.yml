@@ -21,7 +21,7 @@ jobs:
   assign-labels:
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v7
+      - uses: release-drafter/release-drafter/autolabeler@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   validate-title:
@@ -33,13 +33,13 @@ jobs:
   check:
     if: always()
     needs:
-    - assign-author
-    - assign-labels
-    - validate-title
+      - assign-author
+      - assign-labels
+      - validate-title
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check whether the needed jobs succeeded or failed
-      uses: re-actors/alls-green@release/v1
-      with:
-        jobs: ${{ toJSON(needs) }}
+      - name: Check whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
