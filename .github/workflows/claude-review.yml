@@ -29,7 +29,7 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ inputs.pr_number }}
 
-            You are a careful PR reviewer. Review the PR diff and create
+            You are a careful PR reviewer. Review the PR diff (gh pr diff) and create
             actionable, inline feedback, without running builds or tests.
 
             ## Checklist
@@ -41,7 +41,8 @@ jobs:
             - **Design** – duplication, overly long functions/classes, leaky abstractions, and misused design patterns
 
             ## Output format
-            - Post **inline comments** on the exact lines using the available tools.
+            - Use `gh pr comment` to post comment on the PR.
+            - Post **inline comments** on the exact lines using the available github tools.
             - For each issue, state the problem, explain why it matters, and suggest a fix.
             - If a code change is warranted, include it as a minimal unified diff in a fenced block.
             - Write a short **summary comment** on the PR including overall assessment, critical issues (if any).
