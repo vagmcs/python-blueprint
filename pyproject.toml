@@ -23,28 +23,30 @@ packages = ["project"]
 
 [dependency-groups]
 dev = [
-    "basedpyright>=1.38.2",
-    "commitizen>=4.18.0",
-    "hypothesis>=6.165.10",
-    "ipykernel>=7.3.0",
-    "mkdocs>=1.6.1",
-    "poethepoet>=0.48.0",
-    "pre-commit>=4.6.0",
-    "pytest>=9.1.1",
-    "pytest-cov>=7.0.0",
-    "pytest-mock>=3.15.1",
-    "pytest-sugar>=1.1.1",
-    "ruff>=0.16.5",
-    "sqlfluff>=4.3.0",
+  "commitizen>=4.18.0",
+  "hypothesis>=6.165.10",
+  "ipykernel>=7.3.0",
+  "mkdocs>=1.6.1",
+  "poethepoet>=0.48.0",
+  "pre-commit>=4.6.0",
+  "pytest>=9.1.1",
+  "pytest-cov>=7.0.0",
+  "pytest-mock>=3.15.1",
+  "pytest-sugar>=1.1.1",
+  "ruff>=0.16.5",
+  "sqlfluff>=4.3.0",
+  "ty>=0.0.81",
 ]
 
 
-[tool.basedpyright]
-pythonVersion = "3.10"
-typeCheckingMode = "recommended"
-failOnWarnings = false
-reportMissingImports = "warning"
-reportMissingModuleSource = "warning"
+[tool.ty.environment]
+python-version = "3.10"
+
+[tool.ty.rules]
+unresolved-import = "warn"
+
+[tool.ty.terminal]
+error-on-warning = false
 
 
 [tool.ruff]
@@ -56,24 +58,30 @@ extend-exclude = [".ipynb_checkpoints"]
 docstring-code-format = true
 
 [tool.ruff.lint]
-select = ["D", "I", "UP"]
+select = ["ANN", "D", "I", "UP"]
 ignore = ["D1"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.ruff.lint.isort]
-section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
-import-heading = {future = "Futures", standard-library = "Standard Library", third-party = "Dependencies", first-party = "Project"}
+section-order = [
+  "future",
+  "standard-library",
+  "third-party",
+  "first-party",
+  "local-folder",
+]
+import-heading = { future = "Futures", standard-library = "Standard Library", third-party = "Dependencies", first-party = "Project" }
 
 
 [tool.pytest.ini_options]
 addopts = "--capture=no --doctest-modules --cov=project --no-cov-on-fail"
 doctest_optionflags = [
-    "NUMBER",
-    "NORMALIZE_WHITESPACE",
-    "DONT_ACCEPT_TRUE_FOR_1",
-    "IGNORE_EXCEPTION_DETAIL",
+  "NUMBER",
+  "NORMALIZE_WHITESPACE",
+  "DONT_ACCEPT_TRUE_FOR_1",
+  "IGNORE_EXCEPTION_DETAIL",
 ]
 
 [tool.coverage.run]
@@ -128,7 +136,7 @@ shell = """
 help = "Run linter and type checker"
 shell = """
     uv run ruff check --fix ${PROJECT_NAME} tests notebooks
-    uv run basedpyright ${PROJECT_NAME} tests notebooks
+    uv run ty check ${PROJECT_NAME} tests notebooks
 """
 
 [tool.poe.tasks.test]

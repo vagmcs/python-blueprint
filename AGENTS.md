@@ -16,7 +16,7 @@ pyproject.toml # Single source of truth for all tool config
 ```sh
 uv sync                            # Install all dependencies (incl. dev)
 uv run poe format                  # ruff format + sqlfluff fix
-uv run poe lint                    # ruff check --fix + basedpyright
+uv run poe lint                    # ruff check --fix + ty check
 uv run poe test                    # pytest with coverage → coverage/
 uv run poe build-docs              # Build MkDocs site → docs/site/
 uv run poe local-docs              # Serve docs at localhost:8000
@@ -28,8 +28,9 @@ uv run pre-commit run --all-files  # Run all pre-commit hooks manually
 
 ## Code Style
 
-- **Line length:** 120 | **Formatter:** `ruff format` | **Type checker:** `basedpyright` (recommended mode)
-- **Linter rules:** `D` (Google docstrings), `I` (isort), `UP` (pyupgrade) — `D1` ignored
+- **Line length:** 120 | **Formatter:** `ruff format` | **Type checker:** `ty`
+- **Annotations:** required everywhere — `ruff` (`ANN`) enforces their presence, `ty` checks their correctness
+- **Linter rules:** `ANN` (type annotations), `D` (Google docstrings), `I` (isort), `UP` (pyupgrade) — `D1` ignored
 - **Naming:** `snake_case` functions/variables, `PascalCase` classes, `UPPER_SNAKE_CASE` constants, `_leading_underscore` private
 - **Docstrings:** Google-style with doctests where applicable (`--doctest-modules` is always on).
 
