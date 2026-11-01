@@ -23,18 +23,18 @@ packages = ["project"]
 
 [dependency-groups]
 dev = [
-  "commitizen>=4.18.0",
+  "commitizen>=4.19.3",
   "hypothesis>=6.165.10",
   "ipykernel>=7.3.0",
   "mkdocs>=1.6.1",
-  "poethepoet>=0.48.0",
+  "poethepoet>=0.49.0",
   "pre-commit>=4.6.0",
-  "pytest>=9.1.1",
+  "pytest>=9.2.0",
   "pytest-cov>=7.0.0",
-  "pytest-mock>=3.15.1",
+  "pytest-mock>=3.17.0",
   "pytest-sugar>=1.1.1",
-  "ruff>=0.16.5",
-  "sqlfluff>=4.3.0",
+  "ruff>=0.17.3",
+  "sqlfluff>=4.4.0",
   "ty>=0.0.81",
 ]
 
